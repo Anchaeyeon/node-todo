@@ -27,4 +27,15 @@ router.get('/read/:id', (req, res) => {
     });
 });
 
+// todo 추가하기 (create)
+router.post('/create', (req, res) => {
+    const todo = req.body.todo;
+	connection.query("INSERT INTO node_todo (todo) VALUES (?);", todo, function(err, rows){
+		if(err)
+            console.log('에러 발생 ', err);
+		console.log(rows);
+        res.json({ message: '할 일이 추가되었습니다!'});
+	})
+});
+
 module.exports = router;
