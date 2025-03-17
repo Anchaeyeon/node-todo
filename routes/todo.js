@@ -50,4 +50,15 @@ router.put('/update/:id',  (req, res) => {
 	});
 });
 
+// 삭제하기
+router.delete('/delete/:id', (req, res) => {
+    const id = req.params.id;
+    connection.query("DELETE FROM node_todo WHERE id=(?);", id, function(err, rows) {
+        if (err)
+            console.log('에러 발생', err);
+        console.log(rows);
+        res.json({message: 'todo가 삭제되었습니다.'});
+    });
+});
+
 module.exports = router;
