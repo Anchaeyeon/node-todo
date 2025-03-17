@@ -1,4 +1,15 @@
 const express = require('express');
-const app = express();
+const cors = require('cors');
+
+const todo = require('./routes/todo.js');
 const port = 3000;
-const connection = require('./config/config.js');
+const app = express();
+
+app.use(cors()); 
+app.use(express.json());
+
+app.use('/', todo);
+
+app.listen(port, () => {
+  console.log(`http://localhost:${port}`);
+});

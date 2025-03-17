@@ -7,11 +7,9 @@ const connection = mysql.createConnection({
   database : 'mysql' // 엑세스 할 데이터베이스
 });
 
-connection.connect();
-
 connection.connect((err) => {
   if (err) {
-    console.log('database 연결 실패');
+    console.log('database 연결 실패', err);
     return;
   }
   console.log('database 연결 성공');
