@@ -38,4 +38,16 @@ router.post('/create', (req, res) => {
 	})
 });
 
+// 수정하기 (update)
+router.put('/update/:id',  (req, res) => {
+    const todo = req.body.todo;
+    const id = req.params.id;
+	connection.query("UPDATE node_todo SET todo = (?) WHERE id= (?);", [todo, id], function(err, rows){
+		if(err)
+            console.log('에러 발생 ', err);
+        console.log(rows);
+        res.json({ message: 'todo가 수정되었습니다!'});
+	});
+});
+
 module.exports = router;
